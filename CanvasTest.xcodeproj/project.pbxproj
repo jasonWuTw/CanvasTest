@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1256472D25978A7C00DE779D /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1256472C25978A7C00DE779D /* ColorCollectionViewCell.swift */; };
 		12C5A4B42595F8B10097B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5A4B32595F8B10097B477 /* AppDelegate.swift */; };
 		12C5A4B62595F8B10097B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5A4B52595F8B10097B477 /* SceneDelegate.swift */; };
 		12C5A4B82595F8B10097B477 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5A4B72595F8B10097B477 /* ViewController.swift */; };
 		12C5A4BB2595F8B10097B477 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12C5A4B92595F8B10097B477 /* Main.storyboard */; };
 		12C5A4BD2595F8B20097B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12C5A4BC2595F8B20097B477 /* Assets.xcassets */; };
 		12C5A4C02595F8B20097B477 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12C5A4BE2595F8B20097B477 /* LaunchScreen.storyboard */; };
+		12C5A4C9259612330097B477 /* ConvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5A4C8259612330097B477 /* ConvasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1256472C25978A7C00DE779D /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		12C5A4B02595F8B10097B477 /* CanvasTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvasTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12C5A4B32595F8B10097B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12C5A4B52595F8B10097B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		12C5A4BC2595F8B20097B477 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12C5A4BF2595F8B20097B477 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12C5A4C12595F8B20097B477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12C5A4C8259612330097B477 /* ConvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				12C5A4B52595F8B10097B477 /* SceneDelegate.swift */,
 				12C5A4B72595F8B10097B477 /* ViewController.swift */,
 				12C5A4B92595F8B10097B477 /* Main.storyboard */,
+				1256472C25978A7C00DE779D /* ColorCollectionViewCell.swift */,
+				12C5A4C8259612330097B477 /* ConvasView.swift */,
 				12C5A4BC2595F8B20097B477 /* Assets.xcassets */,
 				12C5A4BE2595F8B20097B477 /* LaunchScreen.storyboard */,
 				12C5A4C12595F8B20097B477 /* Info.plist */,
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1256472D25978A7C00DE779D /* ColorCollectionViewCell.swift in Sources */,
+				12C5A4C9259612330097B477 /* ConvasView.swift in Sources */,
 				12C5A4B82595F8B10097B477 /* ViewController.swift in Sources */,
 				12C5A4B42595F8B10097B477 /* AppDelegate.swift in Sources */,
 				12C5A4B62595F8B10097B477 /* SceneDelegate.swift in Sources */,
