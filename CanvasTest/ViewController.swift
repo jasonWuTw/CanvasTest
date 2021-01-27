@@ -13,7 +13,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var backgroundSwitch: UISwitch!
     @IBOutlet weak var ColorCollectionView: UICollectionView!
     @IBOutlet weak var canvas: ConvasView!
-
+    
     //cell要的顏色
     let colorArray = [ #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1), #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1), #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), #colorLiteral(red: 0.3098039329, green: 0.2039215714, blue: 0.03921568766, alpha: 1), #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) ]
     
@@ -26,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         canvas.clipsToBounds = true
         /* 將多點觸控關閉 > 單點觸控 **/
         canvas.isMultipleTouchEnabled = false
-      
+        
         ColorCollectionView.dataSource = self
         ColorCollectionView.delegate = self
         
@@ -37,7 +37,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         canvas.clearCanvas()
         canvas.backgroundColor = nil
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         colorArray.count
     }
@@ -54,9 +54,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.cellForItem(at: indexPath)
         // 設定為不能複選
         collectionView.allowsMultipleSelection = false
-            cell?.layer.cornerRadius = 25
-            cell?.layer.borderWidth = 5
-            cell?.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
+        cell?.layer.cornerRadius = 25
+        cell?.layer.borderWidth = 5
+        cell?.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
         
         // 將顏色給 color
         lineColor = colorIndex
@@ -103,7 +103,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             /// 分享器 UIGraphicsRenderer > 分享的view範圍
             let renderer = UIGraphicsImageRenderer(size: self.canvas.bounds.size)
             let image = renderer.image (actions: { (context) in
-                self.canvas.drawHierarchy(in: self.canvas.bounds, afterScreenUpdates: true)})
+                                            self.canvas.drawHierarchy(in: self.canvas.bounds, afterScreenUpdates: true)})
             /* UIActivityViewController > 分享介面 */
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             self.present(activityViewController, animated: true, completion: nil)
@@ -118,15 +118,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 extension ViewController {
     /* 修改圖片尺寸 **/
     func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
-            /* 設定指定的尺寸 **/
-            let size = CGSize(width: width, height: height)
-            /* UIGraphicsImageRenderer > 繪製圖型方法 **/
-            let renderer = UIGraphicsImageRenderer(size: size)
-            /* 重新繪製縮小後的圖片 **/
-            let newImage = renderer.image { (context) in
-                image.draw(in: renderer.format.bounds)
-            }
-            return newImage
+        /* 設定指定的尺寸 **/
+        let size = CGSize(width: width, height: height)
+        /* UIGraphicsImageRenderer > 繪製圖型方法 **/
+        let renderer = UIGraphicsImageRenderer(size: size)
+        /* 重新繪製縮小後的圖片 **/
+        let newImage = renderer.image { (context) in
+            image.draw(in: renderer.format.bounds)
+        }
+        return newImage
     }
 }
 
