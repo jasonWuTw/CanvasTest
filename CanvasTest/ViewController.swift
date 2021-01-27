@@ -53,11 +53,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let colorIndex = colorArray[indexPath.item]
         let cell = collectionView.cellForItem(at: indexPath)
         // 設定為不能複選
-        collectionView.allowsMultipleSelection = false
-        cell?.layer.cornerRadius = 25
-        cell?.layer.borderWidth = 5
+//        collectionView.allowsMultipleSelection = false
+        cell?.layer.cornerRadius = 50
+        cell?.layer.borderWidth = 8
         cell?.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
-        
         // 將顏色給 color
         lineColor = colorIndex
     }
