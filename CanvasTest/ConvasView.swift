@@ -13,7 +13,7 @@ class ConvasView: UIView {
     // 畫筆粗細
     var lineWidth:CGFloat = 8
     // 貝茲曲線 > 紀錄兩點間連接的路徑
-    var path: UIBezierPath!
+    var path: UIBezierPath?
     // 儲存碰觸的點 (線由很多點形成)
     var touchPoint: CGPoint!
     // 儲存開始作畫的點
@@ -30,9 +30,9 @@ class ConvasView: UIView {
         touchPoint =  touches.first?.location(in: self)
         path = UIBezierPath()   // UIBezierPath()：路徑宣告成物件（初始化）
         /// 1.設定其中一個路徑的端點到startPoint（起點）
-        path.move(to: startPoint)
+        path?.move(to: startPoint)
         /// 2.再拉一條線到touchPoint（另一個端點）
-        path.addLine(to: touchPoint)
+        path?.addLine(to: touchPoint)
         /// 3.將 touchPoint指派給startPoint：如果手拿起來再放下去的話，可以從上次畫的斷點當作起點再繼續畫下去
         startPoint = touchPoint
         // 呼叫對線條上色的方法
@@ -43,7 +43,7 @@ class ConvasView: UIView {
     func draw() {
         let shapeLayer = CAShapeLayer()
         /// 將path( 路徑 )的型別轉換為 cgPath
-        shapeLayer.path = path.cgPath
+        shapeLayer.path = path?.cgPath
         /// 設定筆鋒(筆畫)的顏色
         shapeLayer.strokeColor = lineColor.cgColor
         /// 設定線條的粗細
@@ -59,7 +59,7 @@ class ConvasView: UIView {
     /* 清除所有的點 **/
     func clearCanvas() {
         // 清除所有的點
-        path.removeAllPoints()
+        path?.removeAllPoints()
         // 清空設定的shapeLayer（路徑）
         self.layer.sublayers = nil
         // 顯示線條在畫面上( 重新繪製 )

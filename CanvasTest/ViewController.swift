@@ -29,13 +29,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         ColorCollectionView.dataSource = self
         ColorCollectionView.delegate = self
-        
+        ColorCollectionView.allowsMultipleSelection = false
     }
     
     /* 清除畫布 **/
     @IBAction func clear(_ sender: UIButton) {
         canvas.clearCanvas()
         canvas.backgroundColor = nil
+        backgroundSwitch.isOn = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,8 +53,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // 取得點擊collectionView.item的view顏色
         let colorIndex = colorArray[indexPath.item]
         let cell = collectionView.cellForItem(at: indexPath)
-        // 設定為不能複選
-//        collectionView.allowsMultipleSelection = false
         cell?.layer.cornerRadius = 50
         cell?.layer.borderWidth = 8
         cell?.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
@@ -63,6 +62,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 沒被選中的item **/
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
+        // 設定為不能複選
+        collectionView.allowsMultipleSelection = false
         cell?.layer.borderWidth = 0
         cell?.layer.borderColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0).cgColor
     }
