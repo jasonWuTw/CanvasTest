@@ -20,6 +20,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 此變數用來裝修正後圖片 **/
     var resetImage = UIImage()
     
+    /** 宣告一個array莊每一個顏色是諷是否被選取，被選取時為true 否則為false */
+    var selectedCheck: [Bool] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         /* 是否限制畫板範圍只能在bounds內 > true **/
@@ -30,6 +33,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         ColorCollectionView.dataSource = self
         ColorCollectionView.delegate = self
         ColorCollectionView.allowsMultipleSelection = false
+        
+        /** 預設顏色為第一個顏色 */
+        lineColor = colorArray[0]
     }
     
     /* 清除畫布 **/
@@ -44,28 +50,49 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionViewCell", for: indexPath) as! ColorCollectionViewCell
-        cell.ColorView.backgroundColor = colorArray[indexPath.row]
+        cell.ColorView.backgroundColor = colorArray[indexPath.item]
+        
+        
+        /** 初始設定 */
+        // 初始先設定第一個 item 為已選取
+             if selectedCheck == [] {             // Array為空時(一開始未選擇顏色時)
+                 selectedCheck.append(true)       // 預設已選取第一格顏色 先將第一個加入true
+                 
+                 for _ in 1...colorArray.count {
+                     selectedCheck.append(false)  // 依序將後續的顏色加入false：為未被選取
+                 }
+             }
+        // 判斷collection view 是否已被選取
+                if selectedCheck[indexPath.item] == true {    // "== true" 亦可省略
+                    cell.layer.cornerRadius = 50
+                    cell.layer.borderWidth = 8
+                    cell.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
+                } else {
+                    cell.layer.cornerRadius = 50
+                    cell.layer.borderWidth = 0
+                    cell.layer.borderColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0).cgColor
+                }
+        
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         // 取得點擊collectionView.item的view顏色
-        let colorIndex = colorArray[indexPath.item]
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.cornerRadius = 50
-        cell?.layer.borderWidth = 8
-        cell?.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
         // 將顏色給 color
+        let colorIndex = colorArray[indexPath.item]
         lineColor = colorIndex
-    }
-    /* 沒被選中的item **/
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        // 設定為不能複選
-        collectionView.allowsMultipleSelection = false
-        cell?.layer.borderWidth = 0
-        cell?.layer.borderColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0).cgColor
+        
+        /** 點選item時操作 */
+        for i in 0...(selectedCheck.count - 1)  {
+            selectedCheck[i] = false              // 1. 先將Bool陣列轉為false：重置選取狀態
+         }
+        
+        selectedCheck[indexPath.item] = true      // 2. 再將選取的item轉為true
+        ColorCollectionView.reloadData()            // 3. reloadData(重新變更cell狀態)
     }
     
     /* 設定畫布背景色 **/
@@ -92,6 +119,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func pickerImage(_ sender: UIBarButtonItem) {
         let controller = UIImagePickerController()
         controller.sourceType = .photoLibrary
+        controller.isEditing = true
         controller.delegate = self
         present(controller, animated: true, completion: nil)
     }

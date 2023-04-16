@@ -8,7 +8,7 @@
 import UIKit
 
 // 畫筆顏色 > 設為全域變數，可被呼叫
-var lineColor = UIColor.black
+var lineColor = UIColor()
 class ConvasView: UIView {
     // 畫筆粗細
     var lineWidth:CGFloat = 8
@@ -18,7 +18,8 @@ class ConvasView: UIView {
     var touchPoint: CGPoint!
     // 儲存開始作畫的點
     var startPoint: CGPoint!
-    /* 設定開始作畫的func **/
+    
+    /* 設定開始作畫的func(點擊畫面的當下呼叫) **/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 取得點下去的第一個點，存入startPoint中，self > ConvasView
         startPoint = touches.first?.location(in: self)
