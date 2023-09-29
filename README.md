@@ -1,6 +1,6 @@
 # CanvasTest
 
-##Swift
+## Swift
 
 ### 設定相片為背景
 ### 筆刷顏色選擇
