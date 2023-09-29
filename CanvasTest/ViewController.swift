@@ -35,6 +35,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         /** 預設顏色為第一個顏色 */
         lineColor = colorArray[0]
+        
+        backgroundSwitch.isHidden = true
     }
     
     /* 清除畫布 **/
@@ -42,7 +44,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         canvas.clearCanvas()
         canvas.backgroundColor = nil
         backgroundSwitch.isOn = true
-        backgroundSwitch.isHidden = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
