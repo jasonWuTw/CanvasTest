@@ -1,7 +1,7 @@
 CanvasTest
 ===
 
-Swift
+Swift + iPad + iPhone 
 ---
 
 功能
