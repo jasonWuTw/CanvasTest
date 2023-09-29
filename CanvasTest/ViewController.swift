@@ -2,7 +2,6 @@
 //  ViewController.swift
 //  CanvasTest
 //
-//  Created by 陳暘璿 on 2020/12/25.
 //
 
 import UIKit
@@ -43,6 +42,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         canvas.clearCanvas()
         canvas.backgroundColor = nil
         backgroundSwitch.isOn = true
+        backgroundSwitch.isHidden = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

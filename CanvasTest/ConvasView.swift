@@ -2,7 +2,6 @@
 //  ConvasView.swift
 //  CanvasTest
 //
-//  Created by 陳暘璿 on 2020/12/25.
 //
 
 import UIKit

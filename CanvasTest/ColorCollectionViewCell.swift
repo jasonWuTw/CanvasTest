@@ -2,7 +2,6 @@
 //  ColorCollectionViewCell.swift
 //  CanvasTest
 //
-//  Created by 陳暘璿 on 2020/12/26.
 //
 
 import UIKit
