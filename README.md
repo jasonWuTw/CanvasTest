@@ -1,8 +1,10 @@
-# CanvasTest
+CanvasTest
+===
 
-### Swift
+Swift
+---
 
-### 功能
+功能
   - 設定相片為背景
   - 筆刷顏色選擇
   - 隨手畫
