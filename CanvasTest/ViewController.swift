@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  CanvasTest
 //
-//
+//  Jason Wu
 
 import UIKit
 import PhotosUI
