@@ -17,11 +17,15 @@ class ConvasView: UIView {
     var touchPoint: CGPoint!
     // 儲存開始作畫的點
     var startPoint: CGPoint!
-    
+    // 所有Points放在array
+    var pathPoints: [CGPoint] = []
+
     /* 設定開始作畫的func(點擊畫面的當下呼叫) **/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 取得點下去的第一個點，存入startPoint中，self > ConvasView
         startPoint = touches.first?.location(in: self)
+        //Points放在array
+        pathPoints.append(startPoint)
     }
     
     /* 設定按住滑動時的func **/
@@ -35,6 +39,8 @@ class ConvasView: UIView {
         path?.addLine(to: touchPoint)
         /// 3.將 touchPoint指派給startPoint：如果手拿起來再放下去的話，可以從上次畫的斷點當作起點再繼續畫下去
         startPoint = touchPoint
+        //Points放在array
+        pathPoints.append(startPoint)
         // 呼叫對線條上色的方法
         draw()
     }
@@ -64,6 +70,8 @@ class ConvasView: UIView {
         self.layer.sublayers = nil
         // 顯示線條在畫面上( 重新繪製 )
         self.setNeedsDisplay()
+        //清空Points array
+        pathPoints.removeAll()
     }
     
 }

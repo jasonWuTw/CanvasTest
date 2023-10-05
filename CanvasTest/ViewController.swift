@@ -125,22 +125,29 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         present(controller, animated: true, completion: nil)
     }
     
-    /* 儲存成相片 **/
+    /* 儲存所有Points **/
     @IBAction func saveView(_ sender: UIBarButtonItem) {
-        let controller = UIAlertController(title: "分享", message: nil, preferredStyle: .actionSheet)
-        let saveAction = UIAlertAction(title: "輸出", style: .default) { (_) in
-            /// 分享器 UIGraphicsRenderer > 分享的view範圍
-            let renderer = UIGraphicsImageRenderer(size: self.canvas.bounds.size)
-            let image = renderer.image (actions: { (context) in
-                                            self.canvas.drawHierarchy(in: self.canvas.bounds, afterScreenUpdates: true)})
-            /* UIActivityViewController > 分享介面 */
-            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            self.present(activityViewController, animated: true, completion: nil)
+        //儲存所有Points
+        if(canvas.pathPoints.isEmpty){
+            print("pathPoints.isEmpty) = true")
+        }else{
+            print(canvas.pathPoints)
         }
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        controller.addAction(saveAction)
-        controller.addAction(cancelAction)
-        present(controller, animated: true, completion: nil)
+        
+//        let controller = UIAlertController(title: "分享", message: nil, preferredStyle: .actionSheet)
+//        let saveAction = UIAlertAction(title: "輸出", style: .default) { (_) in
+//            /// 分享器 UIGraphicsRenderer > 分享的view範圍
+//            let renderer = UIGraphicsImageRenderer(size: self.canvas.bounds.size)
+//            let image = renderer.image (actions: { (context) in
+//                                            self.canvas.drawHierarchy(in: self.canvas.bounds, afterScreenUpdates: true)})
+//            /* UIActivityViewController > 分享介面 */
+//            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+//            self.present(activityViewController, animated: true, completion: nil)
+//        }
+//        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+//        controller.addAction(saveAction)
+//        controller.addAction(cancelAction)
+//        present(controller, animated: true, completion: nil)
     }
 }
 
