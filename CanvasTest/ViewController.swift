@@ -132,20 +132,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 儲存所有Points **/
     @IBAction func saveView(_ sender: UIBarButtonItem) {
         //顯示所有Points
-//        if(canvas.rectPoints.isEmpty){
-//            print("沒有長方形\n")
-//        }else{
-//            print("長方形:\n")
-//            print(canvas.rectPoints)
-//            print("\n")
-//        }
+        if(canvas.rectPoints.isEmpty){
+            print("沒有長方形\n")
+        }else{
+            print("長方形:\n")
+            print(canvas.rectPoints)
+            print("\n")
+        }
         if(canvas.pathPoints.isEmpty){
             print("沒有畫筆\n")
         }else{
-//            print("畫筆:",canvas.pathPoints)
-//            print("countPaintbrushArray : ", canvas.countPaintbrushArray)
-//            print("canvas.pathPoints.count:",canvas.pathPoints.count)
-            
             var index=0
             var count=1
             for element in canvas.countPaintbrushArray {
