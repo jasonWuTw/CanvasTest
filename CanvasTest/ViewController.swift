@@ -7,6 +7,8 @@
 import UIKit
 import PhotosUI
 
+// 設為全域變數，可被呼叫
+var brushType = "Paintbrush"
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet weak var backgroundSwitch: UISwitch!
@@ -36,7 +38,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         /** 預設顏色為第一個顏色 */
         lineColor = colorArray[0]
         
-        backgroundSwitch.isHidden = true
+        //backgroundSwitch.isHidden = true
     }
     
     /* 清除畫布 **/
@@ -99,9 +101,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 設定畫布背景色 **/
     @IBAction func setBackgroundColor(_ sender: UISwitch) {
         if backgroundSwitch.isOn {
-            canvas.backgroundColor = UIColor(patternImage: resetImage)
+            //canvas.backgroundColor = UIColor(patternImage: resetImage)
+            brushType="Paintbrush"
         } else {
-            canvas.backgroundColor = .black
+            //canvas.backgroundColor = .black
+            brushType="Rectangle"
         }
     }
     
@@ -127,11 +131,33 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     /* 儲存所有Points **/
     @IBAction func saveView(_ sender: UIBarButtonItem) {
-        //儲存所有Points
+        //顯示所有Points
+//        if(canvas.rectPoints.isEmpty){
+//            print("沒有長方形\n")
+//        }else{
+//            print("長方形:\n")
+//            print(canvas.rectPoints)
+//            print("\n")
+//        }
         if(canvas.pathPoints.isEmpty){
-            print("pathPoints.isEmpty) = true")
+            print("沒有畫筆\n")
         }else{
-            print(canvas.pathPoints)
+//            print("畫筆:",canvas.pathPoints)
+//            print("countPaintbrushArray : ", canvas.countPaintbrushArray)
+//            print("canvas.pathPoints.count:",canvas.pathPoints.count)
+            
+            var index=0
+            var count=1
+            for element in canvas.countPaintbrushArray {
+                print("畫筆",count)
+                //print(element, terminator: " ")
+                for j in index..<element {
+                    print(canvas.pathPoints[j], terminator: " ")
+                }
+                print("")
+                index=element
+                count+=1
+            }
         }
         
 //        let controller = UIAlertController(title: "分享", message: nil, preferredStyle: .actionSheet)

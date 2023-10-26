@@ -14,8 +14,8 @@
             filePath = "CanvasTest/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "saveView(_:)"
             landmarkType = "7">
             <Locations>
@@ -62,58 +62,10 @@
             filePath = "CanvasTest/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "saveView(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ACC150F1-47A7-40CA-B1D5-59032BC0F1AE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CanvasTest/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "saveView(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ACC150F1-47A7-40CA-B1D5-59032BC0F1AE - 38648fce0ddd1bb7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CanvasTest.ViewController.saveView(__C.UIBarButtonItem) -&gt; ()"
-                  moduleName = "CanvasTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andy/Documents/xcode/CanvasTest/CanvasTest/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "134"
-                  endingLineNumber = "134"
-                  offsetFromSymbolStart = "790">
-               </Location>
-               <Location
-                  uuid = "ACC150F1-47A7-40CA-B1D5-59032BC0F1AE - 38648fce0ddd1bb7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CanvasTest.ViewController.saveView(__C.UIBarButtonItem) -&gt; ()"
-                  moduleName = "CanvasTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andy/Documents/xcode/CanvasTest/CanvasTest/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "134"
-                  endingLineNumber = "134"
-                  offsetFromSymbolStart = "573">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,8 +78,8 @@
             filePath = "CanvasTest/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "saveView(_:)"
             landmarkType = "7">
             <Locations>
@@ -174,8 +126,8 @@
             filePath = "CanvasTest/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "saveView(_:)"
             landmarkType = "7">
             <Locations>
