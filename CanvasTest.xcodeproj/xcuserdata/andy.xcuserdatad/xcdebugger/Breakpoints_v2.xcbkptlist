@@ -14,8 +14,8 @@
             filePath = "CanvasTest/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "saveView(_:)"
             landmarkType = "7">
             <Locations>
@@ -62,9 +62,9 @@
             filePath = "CanvasTest/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "saveView(_:)"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "resizeImage(image:width:height:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

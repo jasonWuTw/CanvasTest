@@ -156,6 +156,33 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
         
+        //todo 將canvas轉為image物件
+        //mage物件轉為png檔案
+        //png檔案存到本地的相簿
+        // 建立 UIGraphicsImageRenderer 物件
+        let renderer = UIGraphicsImageRenderer(size: canvas.bounds.size)
+        // 使用 UIGraphicsImageRenderer 物件來繪製 canvas
+        let image = renderer.image { (context) in
+            canvas.drawHierarchy(in: canvas.bounds, afterScreenUpdates: true)
+        }
+        // 将 UIImage 转成 png 数据
+        guard let pngData = image.pngData() else {
+          print("无法转换成 PNG 格式")
+          return
+        }
+        // 將 PNG 數據保存到相冊
+        PHPhotoLibrary.shared().performChanges({
+            let creationRequest = PHAssetCreationRequest.forAsset()
+            creationRequest.addResource(with: .photo, data: pngData, options: nil)
+        }) { (success, error) in
+            if success {
+                print("圖像已保存到相冊")
+            } else if let error = error {
+                print("錯誤：\(error.localizedDescription)")
+            }
+        }
+        
+        
 //        let controller = UIAlertController(title: "分享", message: nil, preferredStyle: .actionSheet)
 //        let saveAction = UIAlertAction(title: "輸出", style: .default) { (_) in
 //            /// 分享器 UIGraphicsRenderer > 分享的view範圍
