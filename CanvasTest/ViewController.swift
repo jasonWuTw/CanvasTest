@@ -9,9 +9,11 @@ import PhotosUI
 
 // 設為全域變數，可被呼叫
 var brushType = "Paintbrush"
+/*捏合手勢*/
+var isPinch: Bool=false
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    @IBOutlet weak var backgroundSwitch: UISwitch!
+    @IBOutlet weak var paintSwitch: UISwitch!
     @IBOutlet weak var ColorCollectionView: UICollectionView!
     @IBOutlet weak var canvas: ConvasView!
     
@@ -23,13 +25,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     /** 宣告一個array莊每一個顏色是諷是否被選取，被選取時為true 否則為false */
     var selectedCheck: [Bool] = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         /* 是否限制畫板範圍只能在bounds內 > true **/
         canvas.clipsToBounds = true
         /* 將多點觸控關閉 > 單點觸控 **/
-        canvas.isMultipleTouchEnabled = false
+        canvas.isMultipleTouchEnabled = true
         
         ColorCollectionView.dataSource = self
         ColorCollectionView.delegate = self
@@ -38,14 +40,62 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         /** 預設顏色為第一個顏色 */
         lineColor = colorArray[0]
         
-        //backgroundSwitch.isHidden = true
+        //paintSwitch.isHidden = true
+        
+        // 添加拖動手勢
+//        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panImage))
+//        canvas.addGestureRecognizer(panGestureRecognizer)
+        
+        // 添加捏合手勢
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinchImage))
+        canvas.addGestureRecognizer(pinchGestureRecognizer)
     }
+    
+    @objc func pinchImage(_ gesture: UIPinchGestureRecognizer) {
+        
+        if gesture.state == .began {
+            // 捏合手勢開始
+            isPinch = true
+            print("捏合手勢開始,%s",gesture.scale)
+        } else if gesture.state == .ended {
+            // 捏合手勢結束
+            isPinch = false
+            print("捏合手勢結束,%s",gesture.scale)
+        }
+        
+        if gesture.state == .changed {
+            // 获取手势的缩放比例
+            let scale = gesture.scale
+            // 缩放图像
+            canvas.transform = canvas.transform.scaledBy(x: scale, y: scale)
+            print("缩放图像,%s",gesture.scale)
+            // 重置缩放比例，以便下次手势开始时从上一次的缩放比例继续
+            gesture.scale = 1.0
+        }
+    }
+
+    
+
+    @objc func panImage(_ sender: UIPanGestureRecognizer) {
+        // 計算拖動手勢的移動距離
+        let translation = sender.translation(in: canvas)
+        // 更新 UIView 的位置
+        canvas.center = CGPoint(x: canvas.center.x + translation.x, y: canvas.center.y + translation.y)
+//        // 限制圖片的移動範圍
+//        canvas.center.x = max(canvas.center.x, canvas.bounds.minX)
+//        canvas.center.x = min(canvas.center.x, canvas.bounds.maxX)
+//        canvas.center.y = max(canvas.center.y, canvas.bounds.minY)
+//        canvas.center.y = min(canvas.center.y, canvas.bounds.maxY)
+        // 清除拖動手勢的移動距離
+        sender.setTranslation(CGPoint.zero, in: canvas)
+    }
+
     
     /* 清除畫布 **/
     @IBAction func clear(_ sender: UIButton) {
         canvas.clearCanvas()
-        canvas.backgroundColor = nil
-        backgroundSwitch.isOn = true
+        //canvas.backgroundColor = nil
+        paintSwitch.isOn = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,7 +150,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     /* 設定畫布背景色 **/
     @IBAction func setBackgroundColor(_ sender: UISwitch) {
-        if backgroundSwitch.isOn {
+        if paintSwitch.isOn {
             //canvas.backgroundColor = UIColor(patternImage: resetImage)
             brushType="Paintbrush"
         } else {
@@ -214,4 +264,5 @@ extension ViewController {
         return newImage
     }
 }
+
 

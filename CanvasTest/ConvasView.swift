@@ -32,56 +32,61 @@ class ConvasView: UIView {
 
     /* 設定開始作畫的func(點擊畫面的當下呼叫) **/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 取得點下去的第一個點，存入startPoint中，self > ConvasView
-        startPoint = touches.first?.location(in: self)
-        if(brushType=="Paintbrush"){
-            //Points放在array
-            pathPoints.append(startPoint)
+        if(!isPinch){
+            // 取得點下去的第一個點，存入startPoint中，self > ConvasView
+            startPoint = touches.first?.location(in: self)
+            if(brushType=="Paintbrush"){
+                //Points放在array
+                pathPoints.append(startPoint)
+            }
         }
     }
     
     /* 設定結束滑動時的func **/
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 取得目前滑動的點，存入touchPoint中，self > ConvasView
-        endPoint =  touches.first?.location(in: self)
-        //draw(start: startPoint,end: endPoint)
-        draw()
-        isAddLayer=true
-        switch brushType{
-        case "Rectangle":
-            //Points放在array
-            rectPoints.append(startPoint)
-            rectPoints.append(endPoint)
-        default: //Paintbrush
-            pathPoints.append(startPoint)
-            countPaintbrushArray.append(pathPoints.count)
+        if(!isPinch){
+            // 取得目前滑動的點，存入touchPoint中，self > ConvasView
+            endPoint =  touches.first?.location(in: self)
+            //draw(start: startPoint,end: endPoint)
+            draw()
+            isAddLayer=true
+            switch brushType{
+            case "Rectangle":
+                //Points放在array
+                rectPoints.append(startPoint)
+                rectPoints.append(endPoint)
+            default: //Paintbrush
+                pathPoints.append(startPoint)
+                countPaintbrushArray.append(pathPoints.count)
+            }
         }
     }
     
     /* 設定按住滑動時的func **/
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch brushType{
-        case "Rectangle":
-            // 取得目前滑動的點，存入touchPoint中，self > ConvasView
-            endPoint =  touches.first?.location(in: self)
-            draw()
-            isAddLayer=false
-        default: //Paintbrush
-            // 取得目前滑動的點，存入touchPoint中，self > ConvasView
-            touchPoint =  touches.first?.location(in: self)
-            path = UIBezierPath()   // UIBezierPath()：路徑宣告成物件（初始化）
-            /// 1.設定其中一個路徑的端點到startPoint（起點）
-            path?.move(to: startPoint)
-            /// 2.再拉一條線到touchPoint（另一個端點）
-            path?.addLine(to: touchPoint)
-            /// 3.將 touchPoint指派給startPoint：如果手拿起來再放下去的話，可以從上次畫的斷點當作起點再繼續畫下去
-            startPoint = touchPoint
-            //Points放在array
-            pathPoints.append(startPoint)
-            // 呼叫對線條上色的方法
-            draw()
+        if(!isPinch){
+            switch brushType{
+            case "Rectangle":
+                // 取得目前滑動的點，存入touchPoint中，self > ConvasView
+                endPoint =  touches.first?.location(in: self)
+                draw()
+                isAddLayer=false
+            default: //Paintbrush
+                // 取得目前滑動的點，存入touchPoint中，self > ConvasView
+                touchPoint =  touches.first?.location(in: self)
+                path = UIBezierPath()   // UIBezierPath()：路徑宣告成物件（初始化）
+                /// 1.設定其中一個路徑的端點到startPoint（起點）
+                path?.move(to: startPoint)
+                /// 2.再拉一條線到touchPoint（另一個端點）
+                path?.addLine(to: touchPoint)
+                /// 3.將 touchPoint指派給startPoint：如果手拿起來再放下去的話，可以從上次畫的斷點當作起點再繼續畫下去
+                startPoint = touchPoint
+                //Points放在array
+                pathPoints.append(startPoint)
+                // 呼叫對線條上色的方法
+                draw()
+            }
         }
-        
     }
     
     /* 對畫過的路徑上色 **/

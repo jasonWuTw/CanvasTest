@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YhA-8p-LuT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YhA-8p-LuT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -85,7 +85,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-e2-WJ2">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-e2-WJ2" userLabel="Paint Switch">
                                 <rect key="frame" x="355" y="642" width="51" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="J6O-Na-wk0"/>
@@ -128,8 +128,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ColorCollectionView" destination="RUc-cm-Qhr" id="TgM-Ct-bkt"/>
-                        <outlet property="backgroundSwitch" destination="0lu-e2-WJ2" id="tyM-ez-ygv"/>
                         <outlet property="canvas" destination="COV-ii-eeE" id="p3a-5Y-6ae"/>
+                        <outlet property="paintSwitch" destination="0lu-e2-WJ2" id="tyM-ez-ygv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
