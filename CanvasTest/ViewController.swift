@@ -25,6 +25,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     /** 宣告一個array莊每一個顏色是諷是否被選取，被選取時為true 否則為false */
     var selectedCheck: [Bool] = []
+    
+    var scaleNew: CGFloat = 1
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +56,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @objc func pinchImage(_ gesture: UIPinchGestureRecognizer) {
         
         if gesture.state == .began {
+            scaleNew=1
             // 捏合手勢開始
             isPinch = true
             print("捏合手勢開始,%s",gesture.scale)
         } else if gesture.state == .ended {
+            scaleNew=1
             // 捏合手勢結束
             isPinch = false
             print("捏合手勢結束,%s",gesture.scale)
@@ -65,12 +69,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if gesture.state == .changed {
             // 获取手势的缩放比例
-            let scale = gesture.scale
-            // 缩放图像
-            canvas.transform = canvas.transform.scaledBy(x: scale, y: scale)
-            print("缩放图像,%s",gesture.scale)
-            // 重置缩放比例，以便下次手势开始时从上一次的缩放比例继续
-            gesture.scale = 1.0
+            let scale = gesture.scale * scaleNew
+            if(scale > 1 && scale < 4){
+                // 缩放图像
+                canvas.transform = canvas.transform.scaledBy(x: scale, y: scale)
+                print("缩放图像,%s",gesture.scale)
+                // 重置缩放比例，以便下次手势开始时从上一次的缩放比例继续
+                gesture.scale = 1.0
+            }
         }
     }
 
