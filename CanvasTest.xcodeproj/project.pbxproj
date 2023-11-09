@@ -16,6 +16,7 @@
 		12C5A4C02595F8B20097B477 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12C5A4BE2595F8B20097B477 /* LaunchScreen.storyboard */; };
 		12C5A4C9259612330097B477 /* ConvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5A4C8259612330097B477 /* ConvasView.swift */; };
 		A1475E092AE8367800652B3C /* ConvasViewRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1475E082AE8367800652B3C /* ConvasViewRect.swift */; };
+		A19C34E82AFD0E5700120248 /* SharedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C34E72AFD0E5700120248 /* SharedUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		12C5A4C12595F8B20097B477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12C5A4C8259612330097B477 /* ConvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvasView.swift; sourceTree = "<group>"; };
 		A1475E082AE8367800652B3C /* ConvasViewRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvasViewRect.swift; sourceTree = "<group>"; };
+		A19C34E72AFD0E5700120248 /* SharedUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				12C5A4BC2595F8B20097B477 /* Assets.xcassets */,
 				12C5A4BE2595F8B20097B477 /* LaunchScreen.storyboard */,
 				12C5A4C12595F8B20097B477 /* Info.plist */,
+				A19C34E72AFD0E5700120248 /* SharedUtils.swift */,
 			);
 			path = CanvasTest;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19C34E82AFD0E5700120248 /* SharedUtils.swift in Sources */,
 				1256472D25978A7C00DE779D /* ColorCollectionViewCell.swift in Sources */,
 				12C5A4C9259612330097B477 /* ConvasView.swift in Sources */,
 				A1475E092AE8367800652B3C /* ConvasViewRect.swift in Sources */,

@@ -23,8 +23,8 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rs-aw-tUt">
-                                <rect key="frame" x="10" y="632" width="335" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rs-aw-tUt">
+                                <rect key="frame" x="10" y="658" width="335" height="50"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xES-Ya-xez"/>
@@ -85,8 +85,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-e2-WJ2" userLabel="Paint Switch">
-                                <rect key="frame" x="355" y="642" width="51" height="40"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-e2-WJ2" userLabel="Paint Switch">
+                                <rect key="frame" x="353" y="658" width="51" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="J6O-Na-wk0"/>
                                 </constraints>

@@ -10,7 +10,8 @@ import PhotosUI
 // 設為全域變數，可被呼叫
 var brushType = "Paintbrush"
 /*捏合手勢*/
-var isPinch: Bool=false
+var isPinch = true
+var canvas_diagonal_length:Float = 0    //對角線長度
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet weak var paintSwitch: UISwitch!
@@ -51,57 +52,61 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // 添加捏合手勢
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinchImage))
         canvas.addGestureRecognizer(pinchGestureRecognizer)
+        
+        let rightBottomCorner = CGPoint(x: view.frame.origin.x + view.frame.size.width, y: view.frame.origin.y + view.frame.size.height)
+        let canvas_diagonal_length = distance(between:canvas.frame.origin,and:rightBottomCorner)
+        //print("canvas_diagonal_length : ",canvas_diagonal_length)
     }
     
+    //捏合手勢
     @objc func pinchImage(_ gesture: UIPinchGestureRecognizer) {
-        
-        if gesture.state == .began {
-            scaleNew=1
-            // 捏合手勢開始
-            isPinch = true
-            print("捏合手勢開始,%s",gesture.scale)
-        } else if gesture.state == .ended {
-            scaleNew=1
-            // 捏合手勢結束
-            isPinch = false
-            print("捏合手勢結束,%s",gesture.scale)
-        }
-        
-        if gesture.state == .changed {
-            // 获取手势的缩放比例
-            let scale = gesture.scale * scaleNew
-            if(scale > 1 && scale < 4){
-                // 缩放图像
-                canvas.transform = canvas.transform.scaledBy(x: scale, y: scale)
-                print("缩放图像,%s",gesture.scale)
-                // 重置缩放比例，以便下次手势开始时从上一次的缩放比例继续
-                gesture.scale = 1.0
+        //print("paintSwitch.isOn:",paintSwitch.isOn)
+        if(paintSwitch.isOn==false){
+            if gesture.state == .began {
+                // 捏合手勢開始
+                gesture.scale = scaleNew
+            }else if gesture.state == .changed {
+                // 获取手势的缩放比例
+                let scale = gesture.scale
+                let tmpScale = scaleNew * scale
+                if(tmpScale > 1 && tmpScale < 4){
+                    // 缩放图像
+                    canvas.transform = canvas.transform.scaledBy(x: scale, y: scale)
+                    scaleNew = tmpScale
+                    // 重置缩放比例，以便下次手势开始时从上一次的缩放比例继续
+                    gesture.scale = 1.0
+                }
+            }else if gesture.state == .ended {
+                // 捏合手勢結束
+                gesture.scale = scaleNew
             }
         }
     }
 
     
-
-    @objc func panImage(_ sender: UIPanGestureRecognizer) {
-        // 計算拖動手勢的移動距離
-        let translation = sender.translation(in: canvas)
-        // 更新 UIView 的位置
-        canvas.center = CGPoint(x: canvas.center.x + translation.x, y: canvas.center.y + translation.y)
-//        // 限制圖片的移動範圍
-//        canvas.center.x = max(canvas.center.x, canvas.bounds.minX)
-//        canvas.center.x = min(canvas.center.x, canvas.bounds.maxX)
-//        canvas.center.y = max(canvas.center.y, canvas.bounds.minY)
-//        canvas.center.y = min(canvas.center.y, canvas.bounds.maxY)
-        // 清除拖動手勢的移動距離
-        sender.setTranslation(CGPoint.zero, in: canvas)
-    }
+//    @objc func panImage(_ sender: UIPanGestureRecognizer) {
+//        // 計算拖動手勢的移動距離
+//        let translation = sender.translation(in: canvas)
+//        // 更新 UIView 的位置
+//        canvas.center = CGPoint(x: canvas.center.x + translation.x, y: canvas.center.y + translation.y)
+////        // 限制圖片的移動範圍
+////        canvas.center.x = max(canvas.center.x, canvas.bounds.minX)
+////        canvas.center.x = min(canvas.center.x, canvas.bounds.maxX)
+////        canvas.center.y = max(canvas.center.y, canvas.bounds.minY)
+////        canvas.center.y = min(canvas.center.y, canvas.bounds.maxY)
+//        // 清除拖動手勢的移動距離
+//        sender.setTranslation(CGPoint.zero, in: canvas)
+//    }
 
     
     /* 清除畫布 **/
     @IBAction func clear(_ sender: UIButton) {
         canvas.clearCanvas()
-        //canvas.backgroundColor = nil
+        // 缩放图像
+        canvas.transform = canvas.transform.scaledBy(x: 1/scaleNew, y: 1/scaleNew)
         paintSwitch.isOn = true
+        isPinch=true
+        scaleNew=1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,11 +162,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 設定畫布背景色 **/
     @IBAction func setBackgroundColor(_ sender: UISwitch) {
         if paintSwitch.isOn {
+            isPinch=true
+            //print("paintSwitch.isOn")
             //canvas.backgroundColor = UIColor(patternImage: resetImage)
-            brushType="Paintbrush"
+            //brushType="Paintbrush"
         } else {
+            isPinch=false
+            //print("paintSwitch.isOFF")
             //canvas.backgroundColor = .black
-            brushType="Rectangle"
+            //brushType="Rectangle"
         }
     }
     
