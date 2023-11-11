@@ -76,7 +76,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }else if gesture.state == .ended {
                 // 捏合手勢結束
-                //gesture.scale = scaleNew
+                gesture.scale = scaleNew
             }
         }
     }
@@ -159,6 +159,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 設定畫布背景色 **/
     @IBAction func setBackgroundColor(_ sender: UISwitch) {
         if paintSwitch.isOn {
+            ColorCollectionView.isHidden=false
             //canvas.isMultipleTouchEnabled = false
             // remove捏合手勢
             //canvas.removeGestureRecognizer(pinchGestureRecognizer)
@@ -167,6 +168,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             //canvas.backgroundColor = UIColor(patternImage: resetImage)
             //brushType="Paintbrush"
         } else {
+            ColorCollectionView.isHidden=true
             //canvas.isMultipleTouchEnabled = true
             // 添加捏合手勢
             //canvas.addGestureRecognizer(pinchGestureRecognizer)
