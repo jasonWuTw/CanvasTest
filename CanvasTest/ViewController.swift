@@ -11,7 +11,7 @@ import PhotosUI
 var brushType = "Paintbrush"
 /*捏合手勢*/
 var isPinch = true
-var canvas_diagonal_length:Float = 0    //對角線長度
+//var canvas_diagonal_length:Float = 0    //對角線長度
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet weak var paintSwitch: UISwitch!

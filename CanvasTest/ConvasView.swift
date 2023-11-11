@@ -30,7 +30,7 @@ class ConvasView: UIView {
     var isAddLayer: Bool=true
     // 儲存舊的layer
     var oldLayer: CALayer!
-    var total_distance:CGFloat = 0
+    //var total_distance:CGFloat = 0
 
     /* 設定開始作畫的func(點擊畫面的當下呼叫) **/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,8 +61,8 @@ class ConvasView: UIView {
                 pathPoints.append(startPoint)
                 countPaintbrushArray.append(pathPoints.count)
             }
-        let distance = distance(between:startPoint,and:endPoint)
-        total_distance += distance
+        //let distance = distance(between:startPoint,and:endPoint)
+        //total_distance += distance
 //        print("touchesEnded-distance:",distance)
         //print("touchesEnded- total_distance:",total_distance)
         }
@@ -77,14 +77,14 @@ class ConvasView: UIView {
                 endPoint =  touches.first?.location(in: self)
                 draw()
                 isAddLayer=false
-                let distance = distance(between:startPoint,and:endPoint)
-                total_distance += distance
+                //let distance = distance(between:startPoint,and:endPoint)
+                //total_distance += distance
                 //print("touchesMoved- total_distance:",total_distance)
             default: //Paintbrush
                 // 取得目前滑動的點，存入touchPoint中，self > ConvasView
                 touchPoint =  touches.first?.location(in: self)
-                let distance = distance(between:startPoint,and:touchPoint)
-                total_distance += distance
+                //let distance = distance(between:startPoint,and:touchPoint)
+                //total_distance += distance
                 //print("touchesMoved- total_distance:",total_distance)
                 path = UIBezierPath()   // UIBezierPath()：路徑宣告成物件（初始化）
                 /// 1.設定其中一個路徑的端點到startPoint（起點）
