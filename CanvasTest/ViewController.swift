@@ -42,14 +42,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         /** 預設顏色為第一個顏色 */
         lineColor = colorArray[0]
-        
-        //paintSwitch.isHidden = true
-        
+                
         // 添加拖動手勢
 //        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panImage))
 //        canvas.addGestureRecognizer(panGestureRecognizer)
-        
-        // 添加捏合手勢
+                
+        //添加縮放手勢
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinchImage))
         canvas.addGestureRecognizer(pinchGestureRecognizer)
         
@@ -69,7 +67,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 // 获取手势的缩放比例
                 let scale = gesture.scale
                 let tmpScale = scaleNew * scale
-                if(tmpScale > 1 && tmpScale < 4){
+                if(tmpScale > 1 && tmpScale < 10){
                     // 缩放图像
                     canvas.transform = canvas.transform.scaledBy(x: scale, y: scale)
                     scaleNew = tmpScale
@@ -78,7 +76,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }else if gesture.state == .ended {
                 // 捏合手勢結束
-                gesture.scale = scaleNew
+                //gesture.scale = scaleNew
             }
         }
     }
@@ -117,27 +115,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionViewCell", for: indexPath) as! ColorCollectionViewCell
         cell.ColorView.backgroundColor = colorArray[indexPath.item]
-        
-        
+                
         /** 初始設定 */
         // 初始先設定第一個 item 為已選取
-             if selectedCheck == [] {             // Array為空時(一開始未選擇顏色時)
-                 selectedCheck.append(true)       // 預設已選取第一格顏色 先將第一個加入true
-                 
-                 for _ in 1...colorArray.count {
-                     selectedCheck.append(false)  // 依序將後續的顏色加入false：為未被選取
-                 }
+         if selectedCheck == [] {             // Array為空時(一開始未選擇顏色時)
+             selectedCheck.append(true)       // 預設已選取第一格顏色 先將第一個加入true
+             
+             for _ in 1...colorArray.count {
+                 selectedCheck.append(false)  // 依序將後續的顏色加入false：為未被選取
              }
+         }
         // 判斷collection view 是否已被選取
-                if selectedCheck[indexPath.item] == true {    // "== true" 亦可省略
-                    cell.layer.cornerRadius = 50
-                    cell.layer.borderWidth = 8
-                    cell.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
-                } else {
-                    cell.layer.cornerRadius = 50
-                    cell.layer.borderWidth = 0
-                    cell.layer.borderColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0).cgColor
-                }
+        if selectedCheck[indexPath.item] == true {    // "== true" 亦可省略
+            cell.layer.cornerRadius = 50
+            cell.layer.borderWidth = 8
+            cell.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
+        } else {
+            cell.layer.cornerRadius = 50
+            cell.layer.borderWidth = 0
+            cell.layer.borderColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0).cgColor
+        }
         
         return cell
     }
@@ -162,11 +159,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /* 設定畫布背景色 **/
     @IBAction func setBackgroundColor(_ sender: UISwitch) {
         if paintSwitch.isOn {
+            //canvas.isMultipleTouchEnabled = false
+            // remove捏合手勢
+            //canvas.removeGestureRecognizer(pinchGestureRecognizer)
             isPinch=true
             //print("paintSwitch.isOn")
             //canvas.backgroundColor = UIColor(patternImage: resetImage)
             //brushType="Paintbrush"
         } else {
+            //canvas.isMultipleTouchEnabled = true
+            // 添加捏合手勢
+            //canvas.addGestureRecognizer(pinchGestureRecognizer)
             isPinch=false
             //print("paintSwitch.isOFF")
             //canvas.backgroundColor = .black
